@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Image Detection</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="nav-bar">
+      <div class="logo">
+        <img src="images/logo.png" alt="html logo" />
+        <a class="name" href="https://ashtonglover.github.io/ashtonglover/"
+          >Ashton Glover</a
+        >
+      </div>
+    </div>
+
+    <div class="header">
+      <h1>AI Image Detection</h1>
+    </div>
+
+    <div class="cards">
+      <div id="overview" class="project-card">
+        <h2>Project Overview</h2>
+        <p>
+          This program utilizes CNNs with the TensorFlow library to determine
+          whether or not an image is real or AI-Generated using two pixel-wise
+          feature extraction techniques, ELA (Error Level Analysis) and PRNU
+          (Photo Response Non-Uniformity). The model was trained on a dataset
+          called CIFAKE which is made up of 100,000 images for training (50,000
+          real and 50,000 fake), as well as 20,000 images for testing (10,000
+          real and 10,000 fake). The images are preprocessed using ELA and PRNU
+          before being passed to the model. I set up a simple web interface
+          where a user can upload an image and let the model predict whether it
+          is real or fake. This is done with a flask backend to pass the image
+          to the saved model after it has been trained. This project is based on
+          the research done in the following paper:
+          <a
+            href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10674908/"
+            target="_blank"
+            >https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10674908/</a
+          >.
+        </p>
+      </div>
+
+      <div id="ela" class="project-card">
+        <h2>ELA Specifics</h2>
+        <p>
+          One of the pixel-wise feature extraction techniques utilized for this
+          project was ELA or Error Level Analysis. ELA is usually used to detect
+          image editing, as when real photos are compressed, there should be
+          gradual losses of detail reflecting the slight degradation of data.
+          Since AI-generated images result from training on large datasets of
+          real photographs, they should display abnormal shifts when ELA is
+          performed. Below is a side by side of a real image before and after
+          ELA.
+        </p>
+        <img src="images/ela.png" alt="ela" />
+      </div>
+
+      <div id="prnu" class="project-card">
+        <h2>PRNU Specifics</h2>
+        <p>
+          PRNU, or Photo Response Non-Uniformity, arises from the noise patterns
+          in cameras. Due to the impossible task of translating exactly what the
+          eyes see to a real photograph, imperfections in cameras will result in
+          a unique noise pattern. Because AI images do not come from a real
+          camera, the PRNU pattern should not be rather inconsistent and
+          unidentifiable. The PRNU pattern can be found by denoising the image
+          and then subtracting it from the original image.
+        </p>
+        <img src="images/prnu.png" alt="ela" />
+      </div>
+      <div id="accuracy" class="project-card">
+        <h2>Accuracy</h2>
+        <img src="images/accuracy.png" alt="ela" />
+        <p> As seen in the above graphs, both extraction techniques yielded strong results for predicting whether or not images were real or AI-generated. During training, the accuracy for both techniques steadily increased through the ten epochs, with much more variable accuracy during the validation phase. For this experiment, ELA yielded slightly better results than PRNU. </p>
+      </div>
+      <div id="dataset" class="project-card">
+        <h2>Dataset Citations</h2>
+        <p> Krizhevsky, A., & Hinton, G. (2009). Learning multiple layers of features from tiny images. </p>
+        <p> Bird, J.J. and Lotfi, A., 2024. CIFAKE: Image Classification and Explainable Identification of AI-Generated Synthetic Images. IEEE Access. </p>
+      </div>
+    </div>
+  </body>
+</html>
